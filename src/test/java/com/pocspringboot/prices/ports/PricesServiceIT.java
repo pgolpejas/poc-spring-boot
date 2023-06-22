@@ -2,6 +2,7 @@ package com.pocspringboot.prices.ports;
 
 import com.pocspringboot.prices.domain.model.Prices;
 import com.pocspringboot.prices.domain.model.PricesSearch;
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Slf4j
 class PricesServiceIT {
     @Autowired
     private PricesService pricesService;
@@ -40,9 +42,9 @@ class PricesServiceIT {
      */
     @Test
     void findPrice2() {
-        pricesRepository.findAll().stream().forEach(this::printPrices);
+        pricesRepository.findAll().forEach(this::printPrices);
 
-        PricesSearch pricesSearch = new PricesSearch(LocalDateTime.of(2020, 6, 14, 16, 0, 0), 35455, 1);
+        PricesSearch pricesSearch = new PricesSearch(LocalDateTime.of(2020, 6, 14, 18, 0, 0), 35455, 1);
         Prices prices = pricesService.findPrice(pricesSearch);
         assertNotNull(prices);
         Assertions.assertThat(prices.brandId()).as("brandId").isEqualTo(1);
@@ -53,7 +55,8 @@ class PricesServiceIT {
     }
 
     private void printPrices(Prices prices) {
-        System.out.println(prices.toString());
+        System.out.println("------- prices: " + prices.toString());
+        log.debug("------ prices {}", prices);
     }
 
     /**
