@@ -1,4 +1,5 @@
-![Coverages](.github/badges/jacoco.svg)
+![coverage](.github/badges/jacoco.svg)
+![branches](.github/badges/jacoco.svg)
 # README #
 
 ## What is this service for? ##
