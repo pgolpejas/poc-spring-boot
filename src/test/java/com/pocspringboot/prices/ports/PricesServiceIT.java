@@ -43,7 +43,7 @@ class PricesServiceIT {
     void findPrice2() {
         pricesRepository.findAll().forEach(this::printPrices);
 
-        PricesSearch pricesSearch = new PricesSearch(LocalDateTime.of(2020, 6, 14, 18, 0, 0), 35455, 1);
+        PricesSearch pricesSearch = new PricesSearch(LocalDateTime.of(2020, 6, 14, 16, 0, 0), 35455, 1);
         Prices prices = pricesService.findPrice(pricesSearch);
         assertNotNull(prices);
         Assertions.assertThat(prices.brandId()).as("brandId").isEqualTo(1);
