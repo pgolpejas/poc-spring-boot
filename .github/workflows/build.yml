@@ -71,9 +71,7 @@ jobs:
           DOCKER_USER: ${{secrets.DOCKER_USER}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: |
-          echo $DOCKER_USER
-          echo $DOCKER_PASSWORD
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
 
       - name: Build the Docker image
         run:  docker build -t ${{secrets.DOCKER_USER}}/poc-spring-boot --build-arg VERSION=0.0.1 .
