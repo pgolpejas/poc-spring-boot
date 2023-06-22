@@ -34,14 +34,17 @@ jobs:
       - name: Unit Tests
         run: mvn clean package
 
+      - name: Integration Tests
+        run: mvn clean verify
+
       - name: Rename the artifact
-        run: cp target/poc-spring-boot.jar poc-spring-boot.jar
+        run: cp target/poc-spring-boot-0.0.1.jar poc-spring-boot-0.0.1.jar
 
       - name: Save the artifact
         uses: actions/upload-artifact@master
         with:
           name: poc-spring-boot
-          path: poc-spring-boot.jar
+          path: poc-spring-boot-0.0.1.jar
 
   upload-dockerhub:
     runs-on: ubuntu-latest
