@@ -1,0 +1,97 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="user" id="0000000000000-01">
+        <createTable tableName="brand">
+            <column autoIncrement="true" name="id" startWith="3" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="brand_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="user" id="0000000000000-02">
+        <createTable tableName="price_list">
+            <column autoIncrement="true" name="id" startWith="5" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="price_list_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user" id="0000000000000-03">
+        <createTable tableName="product">
+            <column name="code" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="product_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user" id="0000000000000-04">
+        <createTable tableName="prices">
+            <column name="brand_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="curr" type="VARCHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column autoIncrement="true" name="id" startWith="5" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="prices_pkey"/>
+            </column>
+            <column name="price_list_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--indexes-->
+    <changeSet author="user" id="0000000000000-05">
+        <addUniqueConstraint columnNames="name" constraintName="brand_name_uk" tableName="brand"/>
+    </changeSet>
+    <changeSet author="user" id="0000000000000-06">
+        <addUniqueConstraint columnNames="name" constraintName="price_list_name_uk" tableName="price_list"/>
+    </changeSet>
+    <changeSet author="user" id="0000000000000-07">
+        <addUniqueConstraint columnNames="name" constraintName="product_name_uk" tableName="product"/>
+    </changeSet>
+
+    <!--    foreign keys-->
+    <changeSet author="user" id="0000000000000-08">
+        <addForeignKeyConstraint baseColumnNames="brand_id" baseTableName="prices" constraintName="prices_brand_fk" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="brand" validate="true"/>
+    </changeSet>
+    <changeSet author="user" id="0000000000000-09">
+        <addForeignKeyConstraint baseColumnNames="price_list_id" baseTableName="prices" constraintName="prices_price_list_fk" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="price_list" validate="true"/>
+    </changeSet>
+    <changeSet author="user" id="0000000000000-10">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="prices" constraintName="prices_product_fk" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="code"
+                                 referencedTableName="product" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

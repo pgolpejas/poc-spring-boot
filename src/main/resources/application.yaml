@@ -1,0 +1,89 @@
+app:
+  name: PocSpringBootApplication
+  description: poc-spring-boot
+
+spring:
+  application:
+    name: PocSpringBootApplication
+
+  ######## Jackson Configuration  #########
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+      fail-on-empty-beans: false
+    time-zone: Europe/Madrid
+
+  ######## JPA Configuration  #########
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        generate_stadistics: true
+        session:
+          events:
+            log:
+              LOG_QUERIES_SLOWER_THAN_MS: 30
+        dialect: org.hibernate.dialect.H2Dialect
+        hbm2ddl:
+          auto: none
+        query:
+          fail_on_pagination_over_collection_fetch: true
+        jdbc:
+          time_zone: Europe/Paris
+        default_schema: pricing
+        use_sql_comments: true
+    open-in-view: false
+
+  ######## Database Configuration  #########
+  datasource:
+    jdbcUrl: jdbc:h2:file:./target/db/h2-db;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS pricing;
+    url: jdbc:h2:file:./target/db/h2-db;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS pricing;
+    driverClassName: org.h2.Driver
+    username: admin
+    password: admin
+  # H2 console
+  h2:
+    console:
+      enabled: false
+
+  ######## Liquibase Configuration  #########
+  liquibase:
+    contexts: none
+    enabled: true
+    default-schema: ${spring.jpa.properties.hibernate.default_schema}
+    liquibase-schema: ${spring.jpa.properties.hibernate.default_schema}
+    parameters:
+      schemaPrefix: ${spring.jpa.properties.hibernate.default_schema}.
+
+  ######## Errors Configuration  #########
+  mvc:
+    problemdetails:
+      enabled: true
+
+######## OpenApi Configuration  #########
+springdoc:
+  swagger-ui:
+    path: /
+    disable-swagger-default-url: 'true'
+info:
+  title: '@project.name@'
+  version: '@project.version@'
+  description: '@project.description@'
+
+######## Actuator Configuration  #########
+management:
+  endpoints:
+    web:
+      exposure:
+        include:*
+
+
+######## Log Configuration  #########
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: trace
+
+
+
+

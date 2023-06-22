@@ -1,0 +1,102 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+  <property name="schemaPrefix" value="" />
+
+
+  <changeSet author="user" id="0000000000000-1">
+    <insert tableName="brand">
+      <column name="id" valueNumeric="1"/>
+      <column name="name" value="BRAND_1"/>
+      <column name="description" value="BRAND_1"/>
+    </insert>
+    <insert tableName="brand">
+      <column name="id" valueNumeric="2"/>
+      <column name="name" value="STRADIVARIUS"/>
+      <column name="description" value="STRADIVARIUS"/>
+    </insert>
+  </changeSet>
+
+  <changeSet author="user" id="0000000000000-2">
+    <insert tableName="product">
+      <column name="code" valueNumeric="35455"/>
+      <column name="name" value="White jeans"/>
+      <column name="description" value="White jeans"/>
+    </insert>
+    <insert tableName="product">
+      <column name="code" valueNumeric="35555"/>
+      <column name="name" value="Blue jeans"/>
+      <column name="description" value="Blue jeans"/>
+    </insert>
+  </changeSet>
+
+  <changeSet author="user" id="0000000000000-3">
+    <insert tableName="price_list">
+      <column name="id" valueNumeric="1"/>
+      <column name="name" value="SUMMER"/>
+      <column name="description" value="Summer price list"/>
+    </insert>
+    <insert tableName="price_list">
+      <column name="id" valueNumeric="2"/>
+      <column name="name" value="SALES"/>
+      <column name="description" value="Sales price list"/>
+    </insert>
+    <insert tableName="price_list">
+      <column name="id" valueNumeric="3"/>
+      <column name="name" value="WINTER"/>
+      <column name="description" value="Winter price list"/>
+    </insert>
+    <insert tableName="price_list">
+      <column name="id" valueNumeric="4"/>
+      <column name="name" value="BLACK"/>
+      <column name="description" value="Black Friday price list"/>
+    </insert>
+  </changeSet>
+
+
+  <changeSet author="user" id="0000000000000-4">
+    <insert tableName="prices">
+      <column name="brand_id" valueNumeric="1"/>
+      <column name="curr" value="EUR"/>
+      <column name="id" valueNumeric="1"/>
+      <column name="price_list_id" valueNumeric="1"/>
+      <column name="priority" valueNumeric="0"/>
+      <column name="product_id" valueNumeric="35455"/>
+      <column name="end_date" valueDate="2020-12-31T23:59:59.999"/>
+      <column name="start_date" valueDate="2020-06-14T00:00:00"/>
+      <column name="price" valueNumeric="35.50"/>
+    </insert>
+    <insert tableName="prices">
+      <column name="brand_id" valueNumeric="1"/>
+      <column name="curr" value="EUR"/>
+      <column name="id" valueNumeric="2"/>
+      <column name="price_list_id" valueNumeric="2"/>
+      <column name="priority" valueNumeric="1"/>
+      <column name="product_id" valueNumeric="35455"/>
+      <column name="end_date" valueDate="2020-06-14T16:30:00"/>
+      <column name="start_date" valueDate="2020-06-14T15:00:00"/>
+      <column name="price" valueNumeric="25.45"/>
+    </insert>
+    <insert tableName="prices">
+      <column name="brand_id" valueNumeric="1"/>
+      <column name="curr" value="EUR"/>
+      <column name="id" valueNumeric="3"/>
+      <column name="price_list_id" valueNumeric="3"/>
+      <column name="priority" valueNumeric="1"/>
+      <column name="product_id" valueNumeric="35455"/>
+      <column name="end_date" valueDate="2020-06-15T11:00:00"/>
+      <column name="start_date" valueDate="2020-06-15T00:00:00"/>
+      <column name="price" valueNumeric="30.50"/>
+    </insert>
+    <insert tableName="prices">
+      <column name="brand_id" valueNumeric="1"/>
+      <column name="curr" value="EUR"/>
+      <column name="id" valueNumeric="4"/>
+      <column name="price_list_id" valueNumeric="4"/>
+      <column name="priority" valueNumeric="1"/>
+      <column name="product_id" valueNumeric="35455"/>
+      <column name="end_date" valueDate="2020-12-31T23:59:59.999"/>
+      <column name="start_date" valueDate="2020-06-15T16:00:00"/>
+      <column name="price" valueNumeric="38.95"/>
+    </insert>
+  </changeSet>
+</databaseChangeLog>
