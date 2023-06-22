@@ -17,6 +17,11 @@ public record Prices(Integer id,
         USD
     }
 
+    @Override
+    public String toString() {
+        return "Prices{" + "id=" + id + ", brandId=" + brandId + ", startDate=" + startDate + ", endDate=" + endDate + ", priceListId="
+            + priceListId + ", productId=" + productId + ", priority=" + priority + ", price=" + price + ", curr=" + curr + '}';
+    }
 }
 
 

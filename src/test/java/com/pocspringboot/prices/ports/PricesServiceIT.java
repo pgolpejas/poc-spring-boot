@@ -18,6 +18,9 @@ class PricesServiceIT {
     @Autowired
     private PricesService pricesService;
 
+    @Autowired
+    private PricesRepository pricesRepository;
+
     /**
      * Test 1: petición a las 10:00 del día 14 del producto 35455   para la brand 1 (BRAND_1) -> 1 35.50
      */
@@ -37,6 +40,8 @@ class PricesServiceIT {
      */
     @Test
     void findPrice2() {
+        pricesRepository.findAll().stream().forEach(this::printPrices);
+
         PricesSearch pricesSearch = new PricesSearch(LocalDateTime.of(2020, 6, 14, 16, 0, 0), 35455, 1);
         Prices prices = pricesService.findPrice(pricesSearch);
         assertNotNull(prices);
@@ -45,6 +50,10 @@ class PricesServiceIT {
         Assertions.assertThat(prices.priceListId()).as("priceListId").isEqualTo(2);
         Assertions.assertThat(prices.price()).as("price").isEqualTo(new BigDecimal("25.45"));
 
+    }
+
+    private void printPrices(Prices prices) {
+        System.out.println(prices.toString());
     }
 
     /**

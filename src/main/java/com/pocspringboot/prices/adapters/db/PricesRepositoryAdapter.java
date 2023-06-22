@@ -7,12 +7,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 class PricesRepositoryAdapter implements PricesRepository {
     private final JpaPricesRepository jpaPricesRepository;
     private final PricesEntityMapper pricesEntityMapper;
+
+    @Override
+    public List<Prices> findAll(){
+        return jpaPricesRepository.findAll().stream()
+            .map(pricesEntityMapper::toPrices)
+            .toList();
+    }
 
     @Override
     public List<Prices> findPrice(PricesSearch prices) {

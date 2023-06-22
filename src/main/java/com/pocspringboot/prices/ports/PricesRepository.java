@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface PricesRepository {
 
+    List<Prices> findAll();
+
     List<Prices> findPrice(PricesSearch prices);
 
 }
