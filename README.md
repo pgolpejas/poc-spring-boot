@@ -1,4 +1,4 @@
-
+![Coverages](.github/badges/jacoco.svg)
 # README #
 
 ## What is this service for? ##
